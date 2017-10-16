@@ -20,22 +20,22 @@ public class Tablero extends Application {
     String X = "/ImagenesTablero/O.png";
     Image imgO = new Image("/ImagenesTablero/O.png");
     String O = "/ImagenesTablero/X.png";
-    String valor = "";
+    
 
     String[][] casillas = new String[3][3];
 
     @Override
     public void start(Stage primaryStage) {
 
-        Casilla imagenUno = crearImagenTablero(0,0);
-        Casilla imagenDos = crearImagenTablero(0,1);
-        ImageView imagenTres = crearImagenTablero(1,0);
-        ImageView imagenCuatro = crearImagenTablero();
-        ImageView imagenCinco = crearImagenTablero();
-        ImageView imagenSeis = crearImagenTablero();
-        ImageView imagenSiete = crearImagenTablero();
-        ImageView imagenOcho = crearImagenTablero();
-        ImageView imagenNueve = crearImagenTablero();
+        ImageView imagenUno = crearImagenTablero(0,0);
+        ImageView imagenDos = crearImagenTablero(0,1);
+        ImageView imagenTres = crearImagenTablero(0,2);
+        ImageView imagenCuatro = crearImagenTablero(1,0);
+        ImageView imagenCinco = crearImagenTablero(1,1);
+        ImageView imagenSeis = crearImagenTablero(1,2);
+        ImageView imagenSiete = crearImagenTablero(2,0);
+        ImageView imagenOcho = crearImagenTablero(2,1);
+        ImageView imagenNueve = crearImagenTablero(2,2);
 
         GridPane tablero = new GridPane();
 
@@ -89,14 +89,19 @@ public class Tablero extends Application {
         imagen.setPickOnBounds(true);
 
         imagen.setOnMouseClicked((MouseEvent event) -> {
+            
+            int filaSeleccionada = imagen.getFila();
+            int columnaSeleccionada = imagen.getColumna();
+            
             if (turnoActual == jugadorUno) {
                 imagen.setImage(imgX);
                 turnoActual = jugadorDos;
-                valor = X;
+                casillas[filaSeleccionada][columnaSeleccionada] = "X";
             } else {
                 imagen.setImage(imgO);
                 turnoActual = jugadorUno;
-                valor = O;
+                casillas[filaSeleccionada][columnaSeleccionada] = "O";
+                
             }
 
         });
