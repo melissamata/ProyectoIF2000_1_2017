@@ -1,11 +1,10 @@
 package guigato;
 
-public class Matriz {
+public class CalculosTablero {
 
-    public boolean esGanador (String[][] matrizTablero, String simboloJugador) {
+    public boolean esGanador(String[][] matrizTablero, String simboloJugador) {
 
         String patronGanador = simboloJugador + simboloJugador + simboloJugador;//puntos de comparación
-        int r = 2;//variable para manejar la opción 8 
         String patronFilaUno = "";
         String patronFilaDos = "";
         String patronFilaTres = "";
@@ -23,12 +22,11 @@ public class Matriz {
             patronColumnaUno += matrizTablero[f][0];//posibilidad de la primera columna
             patronColumnaDos += matrizTablero[f][1];//posibilidad de la segunda columna
             patronColumnaTres += matrizTablero[f][2];//posibilidad de la tercera columna
-            patronDiagonalUno += matrizTablero[f][f];//posibilidad de la diagonal hacia abajo
-            patronDiagonalDos += matrizTablero[r][r];//posibilidad de la diagional hacia arriba
 
-            r -= 1;
         }
-
+        patronDiagonalUno += matrizTablero [0][0]+ matrizTablero [1][1] + matrizTablero [2][2];
+        patronDiagonalDos += matrizTablero [2][0]+ matrizTablero [1][1] + matrizTablero [0][2];
+        
         if (patronFilaUno.equals(patronGanador)
                 || patronFilaDos.equals(patronGanador)
                 || patronFilaTres.equals(patronGanador)
