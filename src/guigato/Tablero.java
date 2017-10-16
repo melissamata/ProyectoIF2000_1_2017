@@ -1,4 +1,3 @@
-
 package guigato;
 
 import javafx.application.Application;
@@ -16,32 +15,28 @@ public class Tablero extends Application {
     private final int jugadorUno = 1;
     private final int jugadorDos = 2;
     private int turnoActual = jugadorUno;
-   
+
     Image imgX = new Image("/ImagenesTablero/X.png");
     String X = "/ImagenesTablero/O.png";
     Image imgO = new Image("/ImagenesTablero/O.png");
-    String O  = "/ImagenesTablero/X.png";
+    String O = "/ImagenesTablero/X.png";
     String valor = "";
-    
-    String [][] casillas = new String [3][3];
-    
-    
-    
+
+    String[][] casillas = new String[3][3];
 
     @Override
     public void start(Stage primaryStage) {
 
-        ImageView imagenUno = crearImagenTablero();
-        ImageView imagenDos = crearImagenTablero();
-        ImageView imagenTres = crearImagenTablero();
+        Casilla imagenUno = crearImagenTablero(0,0);
+        Casilla imagenDos = crearImagenTablero(0,1);
+        ImageView imagenTres = crearImagenTablero(1,0);
         ImageView imagenCuatro = crearImagenTablero();
         ImageView imagenCinco = crearImagenTablero();
         ImageView imagenSeis = crearImagenTablero();
         ImageView imagenSiete = crearImagenTablero();
         ImageView imagenOcho = crearImagenTablero();
         ImageView imagenNueve = crearImagenTablero();
-        
-        
+
         GridPane tablero = new GridPane();
 
         tablero.setPadding(new Insets(10, 10, 10, 10));
@@ -84,31 +79,28 @@ public class Tablero extends Application {
 
     }
 
-    public ImageView crearImagenTablero() {
-        ImageView imagen = new ImageView();
+    public ImageView crearImagenTablero(int fila, int columna) {
+        Casilla imagen = new Casilla(fila, columna);
         imagen.setFitWidth(100);
         imagen.setFitHeight(100);
         imagen.setPreserveRatio(true);
         imagen.setSmooth(true);
         imagen.setCache(true);
         imagen.setPickOnBounds(true);
-        
+
         imagen.setOnMouseClicked((MouseEvent event) -> {
             if (turnoActual == jugadorUno) {
                 imagen.setImage(imgX);
                 turnoActual = jugadorDos;
-                valor=X;
+                valor = X;
             } else {
                 imagen.setImage(imgO);
                 turnoActual = jugadorUno;
-                valor=O;
+                valor = O;
             }
-            
+
         });
         return imagen;
     }
-    
-   
-}
-    
 
+}
