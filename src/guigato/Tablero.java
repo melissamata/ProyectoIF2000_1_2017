@@ -10,14 +10,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 public class Tablero extends Application {
 
     CalculosTablero cT = new CalculosTablero();
+    int cuentaJugadas = 0;
     private final int jugadorUno = 1;
     private final int jugadorDos = 2;
     private int turnoActual = jugadorUno;
+    boolean juegoTerminado = false;
 
     Image imgX = new Image("/ImagenesTablero/X.png");
     String X = "/ImagenesTablero/O.png";
@@ -92,28 +93,33 @@ public class Tablero extends Application {
 
         imagen.setOnMouseClicked((MouseEvent event) -> {
 
-            int filaSeleccionada = imagen.getFila();
-            int columnaSeleccionada = imagen.getColumna();
+            if (!juegoTerminado) {
 
-            if (turnoActual == jugadorUno) {
-                imagen.setImage(imgX);
-                turnoActual = jugadorDos;
-                casillas[filaSeleccionada][columnaSeleccionada] = "X";
-                if (cT.esGanador(casillas, "X")) {
-                    new Alert(Alert.AlertType.INFORMATION, "El ganador es el jugador uno!").showAndWait();
-                }
+                int filaSeleccionada = imagen.getFila();
+                int columnaSeleccionada = imagen.getColumna();
 
-            } else {
-                imagen.setImage(imgO);
-                turnoActual = jugadorUno;
-                casillas[filaSeleccionada][columnaSeleccionada] = "O";
-                if (cT.esGanador(casillas, "O")) {
-                    new Alert(Alert.AlertType.INFORMATION, "El ganador es el jugador dos!").showAndWait();
+                if (turnoActual == jugadorUno) {
+                    imagen.setImage(imgX);
+                    turnoActual = jugadorDos;
+                    casillas[filaSeleccionada][columnaSeleccionada] = "X";
+                    if (cT.esGanador(casillas, "X")) {
+                        new Alert(Alert.AlertType.INFORMATION, "El ganador es el jugador uno!").showAndWait();
+                    }
+
+                } else {
+                    imagen.setImage(imgO);
+                    turnoActual = jugadorUno;
+                    casillas[filaSeleccionada][columnaSeleccionada] = "O";
+                    if (cT.esGanador(casillas, "O")) {
+                        new Alert(Alert.AlertType.INFORMATION, "El ganador es el jugador dos!").showAndWait();
+                        juegoTerminado = true;
+                    }
+
                 }
 
             }
-
         });
+
         return imagen;
     }
 
