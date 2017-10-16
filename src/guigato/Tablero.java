@@ -21,7 +21,11 @@ public class Tablero extends Application {
     String X = "/ImagenesTablero/O.png";
     Image imgO = new Image("/ImagenesTablero/O.png");
     String O  = "/ImagenesTablero/X.png";
-    String valor="";
+    String valor = "";
+    
+    String [][] casillas = new String [3][3];
+    
+    
     
 
     @Override
@@ -103,6 +107,8 @@ public class Tablero extends Application {
         });
         return imagen;
     }
+    
+   
 }
     
 
