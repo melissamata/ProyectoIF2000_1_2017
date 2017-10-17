@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import java.lang.Math;
 
 public class Tablero extends Application {
 
@@ -27,14 +28,7 @@ public class Tablero extends Application {
     Image imgO = new Image("/ImagenesTablero/O.png");
     String O = "/ImagenesTablero/X.png";
 
-    public int aleatorioJugador() {
-
-        int jugadorInicial;
-        jugadorInicial = 1 + (int) (Math.random() * 2);
-        turnoActual = (jugadorInicial == 1 ? jugadorUno : jugadorDos);
-
-        return jugadorInicial;
-    }
+    
 
     String[][] casillas = new String[3][3];
 
@@ -91,6 +85,14 @@ public class Tablero extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+    
+    public int aleatorioJugador() {
+
+        turnoActual = 1 + (int) (Math.random() * 2);
+        turnoActual = (turnoActual == 1 ? jugadorUno : jugadorDos);
+
+        return turnoActual;
     }
 
     public ImageView crearImagenTablero(int fila, int columna) {
