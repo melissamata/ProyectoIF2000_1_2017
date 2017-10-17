@@ -1,4 +1,3 @@
-
 package guigato;
 
 import javafx.application.Application;
@@ -31,32 +30,25 @@ public class NuevoJuego extends Application {
         lbl_ingreseJugadores.setFont(new Font("Arial", 18));
 
         tf_jugadorUno = new TextField();
-        tf_jugadorUno.setText("Jugador 1");
         tf_jugadorUno.setStyle("-fx-font: 18 arial; -fx-base: #EBC504;");
         textoUno = new Tooltip("Enter para continuar");
         tf_jugadorUno.setTooltip(textoUno);
-        
-        
+
         tf_jugadorUno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               tf_jugadorUno.setDisable(true);
-               tf_jugadorDos.setDisable(false);
-               btn_ingresar.setDisable(false);
+                tf_jugadorUno.setDisable(true);
+                tf_jugadorDos.setDisable(false);
+                btn_ingresar.setDisable(false);
             }
         });
-        
-                
-       
-        
 
         tf_jugadorDos = new TextField();
         tf_jugadorDos.setDisable(true);
-        tf_jugadorDos.setText("Jugador 2");
         tf_jugadorDos.setStyle("-fx-font: 18 arial; -fx-base: #EBC504;");
         textoUno = new Tooltip("Enter para continuar");
         tf_jugadorDos.setTooltip(textoUno);
-        
+
         tf_jugadorDos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -64,8 +56,6 @@ public class NuevoJuego extends Application {
                 btn_ingresar.setDisable(false);
             }
         });
-        
-        
 
         t = new Tablero();
 
@@ -107,7 +97,6 @@ public class NuevoJuego extends Application {
         verticalWindow.setAlignment(Pos.CENTER);
         verticalWindow.getChildren().addAll(lbl_ingreseJugadores, tf_jugadorUno, tf_jugadorDos, btn_ingresar, btn_regresar);
 
-        
         BorderPane window = new BorderPane();
 
         window.setCenter(verticalWindow);
@@ -118,5 +107,7 @@ public class NuevoJuego extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+ 
 
 }

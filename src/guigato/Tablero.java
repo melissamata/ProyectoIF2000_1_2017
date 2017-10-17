@@ -17,15 +17,24 @@ public class Tablero extends Application {
 
     CalculosTablero cT = new CalculosTablero();
     int cuentaJugadas = 0;
-    private final int jugadorUno = 1;
-    private final int jugadorDos = 2;
-    private int turnoActual = jugadorUno;
+    public int jugadorUno;
+    public int jugadorDos;
+    int turnoActual;
     boolean juegoTerminado = false;
 
     Image imgX = new Image("/ImagenesTablero/X.png");
     String X = "/ImagenesTablero/O.png";
     Image imgO = new Image("/ImagenesTablero/O.png");
     String O = "/ImagenesTablero/X.png";
+
+    public int aleatorioJugador() {
+
+        int jugadorInicial;
+        jugadorInicial = 1 + (int) (Math.random() * 2);
+        turnoActual = (jugadorInicial == 1 ? jugadorUno : jugadorDos);
+
+        return jugadorInicial;
+    }
 
     String[][] casillas = new String[3][3];
 
@@ -109,7 +118,7 @@ public class Tablero extends Application {
                         AlertaGanadorUno.setContentText("¡El ganador es el jugador uno!");
                         AlertaGanadorUno.initStyle(StageStyle.UTILITY);
                         AlertaGanadorUno.showAndWait();
-                        
+
                     }
                 } else {
                     imagen.setImage(imgO);
