@@ -35,6 +35,9 @@ public class Tablero extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        turnoActual = aleatorioJugador();
+        
+        
         ImageView imagenUno = crearImagenTablero(0, 0);
         ImageView imagenDos = crearImagenTablero(0, 1);
         ImageView imagenTres = crearImagenTablero(0, 2);
@@ -89,10 +92,9 @@ public class Tablero extends Application {
     
     public int aleatorioJugador() {
 
-        turnoActual = 1 + (int) (Math.random() * 2);
-        turnoActual = (turnoActual == 1 ? jugadorUno : jugadorDos);
+        int jugadorInicial = 1 + (int) (Math.random() * 2);
 
-        return turnoActual;
+        return jugadorInicial;
     }
 
     public ImageView crearImagenTablero(int fila, int columna) {
@@ -103,6 +105,7 @@ public class Tablero extends Application {
         imagen.setSmooth(true);
         imagen.setCache(true);
         imagen.setPickOnBounds(true);
+        
 
         imagen.setOnMouseClicked((MouseEvent event) -> {
             if (!juegoTerminado) {
