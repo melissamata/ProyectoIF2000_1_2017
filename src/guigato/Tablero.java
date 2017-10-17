@@ -18,8 +18,8 @@ public class Tablero extends Application {
 
     CalculosTablero cT = new CalculosTablero();
     int cuentaJugadas = 0;
-    public int jugadorUno;
-    public int jugadorDos;
+    public final int jugadorUno = 1;
+    public final int jugadorDos = 2;
     int turnoActual;
     boolean juegoTerminado = false;
 
@@ -36,6 +36,7 @@ public class Tablero extends Application {
     public void start(Stage primaryStage) {
 
         turnoActual = aleatorioJugador();
+        
         
         
         ImageView imagenUno = crearImagenTablero(0, 0);
