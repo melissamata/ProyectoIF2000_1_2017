@@ -1,11 +1,11 @@
 package guigato;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -94,50 +94,47 @@ public class Tablero extends Application {
         imagen.setPickOnBounds(true);
 
         imagen.setOnMouseClicked((MouseEvent event) -> {
-
             if (!juegoTerminado) {
                 cuentaJugadas++;
-
                 int filaSeleccionada = imagen.getFila();
                 int columnaSeleccionada = imagen.getColumna();
-
                 if (turnoActual == jugadorUno) {
                     imagen.setImage(imgX);
                     turnoActual = jugadorDos;
                     casillas[filaSeleccionada][columnaSeleccionada] = "X";
                     if (cT.esGanador(casillas, "X")) {
-                        Alert AlertaGanadorUno = new Alert(Alert.AlertType.INFORMATION);
+                        Alert AlertaGanadorUno = new Alert(Alert.AlertType.NONE);
                         AlertaGanadorUno.setTitle("Gato - Ganador");
                         AlertaGanadorUno.setHeaderText(null);
                         AlertaGanadorUno.setContentText("¡El ganador es el jugador uno!");
                         AlertaGanadorUno.initStyle(StageStyle.UTILITY);
                         AlertaGanadorUno.showAndWait();
-
+                        
                     }
-
                 } else {
                     imagen.setImage(imgO);
                     turnoActual = jugadorUno;
                     casillas[filaSeleccionada][columnaSeleccionada] = "O";
                     if (cT.esGanador(casillas, "O")) {
-                        Alert AlertaGanadorDos = new Alert(Alert.AlertType.INFORMATION);
+                        Alert AlertaGanadorDos = new Alert(Alert.AlertType.NONE);
                         AlertaGanadorDos.setTitle("Gato - Ganador");
                         AlertaGanadorDos.setHeaderText(null);
                         AlertaGanadorDos.setContentText("¡El ganador es el jugador dos!");
                         AlertaGanadorDos.initStyle(StageStyle.UTILITY);
                         AlertaGanadorDos.showAndWait();
+
                         juegoTerminado = true;
                     }
-
                 }
                 if (cuentaJugadas >= 9) {
                     juegoTerminado = true;
-                    Alert AlertaEmpate = new Alert(Alert.AlertType.INFORMATION);
+                    Alert AlertaEmpate = new Alert(Alert.AlertType.NONE);
                     AlertaEmpate.setTitle("Gato - Ganador");
                     AlertaEmpate.setHeaderText(null);
                     AlertaEmpate.setContentText("¡Hay un empate!");
                     AlertaEmpate.initStyle(StageStyle.UTILITY);
                     AlertaEmpate.showAndWait();
+
                 }
             }
         });
