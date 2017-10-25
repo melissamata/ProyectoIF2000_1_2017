@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.lang.Math;
+import javafx.scene.control.ButtonType;
 import javax.swing.JOptionPane;
 
 public class Tablero extends Application {
@@ -129,7 +130,7 @@ public class Tablero extends Application {
                     turnoActual = jugadorDos;
                     casillas[filaSeleccionada][columnaSeleccionada] = "X";
                     if (cT.esGanador(casillas, "X")) {
-                        Alert AlertaGanadorUno = new Alert(Alert.AlertType.NONE);
+                        Alert AlertaGanadorUno = new Alert(Alert.AlertType.INFORMATION);
                         AlertaGanadorUno.setTitle("Gato - Ganador");
                         AlertaGanadorUno.setHeaderText(null);
                         AlertaGanadorUno.setContentText("¡El ganador es el jugador uno!");
@@ -142,12 +143,13 @@ public class Tablero extends Application {
                     turnoActual = jugadorUno;
                     casillas[filaSeleccionada][columnaSeleccionada] = "O";
                     if (cT.esGanador(casillas, "O")) {
-                        Alert AlertaGanadorDos = new Alert(Alert.AlertType.NONE);
+                        Alert AlertaGanadorDos = new Alert(Alert.AlertType.INFORMATION);
                         AlertaGanadorDos.setTitle("Gato - Ganador");
                         AlertaGanadorDos.setHeaderText(null);
                         AlertaGanadorDos.setContentText("¡El ganador es el jugador dos!");
                         AlertaGanadorDos.initStyle(StageStyle.UTILITY);
                         AlertaGanadorDos.showAndWait();
+                        
 
                         juegoTerminado = true;
                     }
@@ -155,7 +157,7 @@ public class Tablero extends Application {
                 if (cuentaJugadas >= 9) {
                     juegoTerminado = true;
                     JOptionPane.showMessageDialog(null, "¡Hay un empate!");
-                    Alert AlertaEmpate = new Alert(Alert.AlertType.NONE);
+                    Alert AlertaEmpate = new Alert(Alert.AlertType.INFORMATION);
                     AlertaEmpate.setTitle("Gato - Ganador");
                     AlertaEmpate.setHeaderText(null);
                     AlertaEmpate.setContentText("¡Hay un empate!");
