@@ -24,9 +24,9 @@ public class CalculosTablero {
             patronColumnaTres += matrizTablero[f][2];//posibilidad de la tercera columna
 
         }
-        patronDiagonalUno += matrizTablero [0][0]+ matrizTablero [1][1] + matrizTablero [2][2];
-        patronDiagonalDos += matrizTablero [2][0]+ matrizTablero [1][1] + matrizTablero [0][2];
-        
+        patronDiagonalUno += matrizTablero[0][0] + matrizTablero[1][1] + matrizTablero[2][2];
+        patronDiagonalDos += matrizTablero[2][0] + matrizTablero[1][1] + matrizTablero[0][2];
+
         if (patronFilaUno.equals(patronGanador)
                 || patronFilaDos.equals(patronGanador)
                 || patronFilaTres.equals(patronGanador)
@@ -39,5 +39,15 @@ public class CalculosTablero {
 
         }
         return ganador;
+    }
+
+    public void reiniciarTablero(String[][] matrizTablero) {
+
+        for (int f = 0; f < matrizTablero.length; f++) {
+            for (int c = 0; c < matrizTablero[0].length; c++) {
+                matrizTablero[f][c] = "";
+            }
+        }
+
     }
 }

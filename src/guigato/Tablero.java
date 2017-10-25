@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.lang.Math;
+import javax.swing.JOptionPane;
 
 public class Tablero extends Application {
 
@@ -28,26 +29,37 @@ public class Tablero extends Application {
     Image imgO = new Image("/ImagenesTablero/O.png");
     String O = "/ImagenesTablero/X.png";
 
-    
+    ImageView imagenUno;
+    ImageView imagenDos;
+    ImageView imagenTres;
+    ImageView imagenCuatro;
+    ImageView imagenCinco;
+    ImageView imagenSeis;
+    ImageView imagenSiete;
+    ImageView imagenOcho;
+    ImageView imagenNueve;
 
     String[][] casillas = new String[3][3];
+    
+    public Tablero(){
+        
+        imagenUno = crearImagenTablero(0, 0);
+        imagenDos = crearImagenTablero(0, 1);
+        imagenTres = crearImagenTablero(0, 2);
+        imagenCuatro = crearImagenTablero(1, 0);
+        imagenCinco = crearImagenTablero(1, 1);
+        imagenSeis = crearImagenTablero(1, 2);
+        imagenSiete = crearImagenTablero(2, 0);
+        imagenOcho = crearImagenTablero(2, 1);
+        imagenNueve = crearImagenTablero(2, 2);
+    
+    }
 
     @Override
     public void start(Stage primaryStage) {
 
         turnoActual = aleatorioJugador();
-        
-        
-        
-        ImageView imagenUno = crearImagenTablero(0, 0);
-        ImageView imagenDos = crearImagenTablero(0, 1);
-        ImageView imagenTres = crearImagenTablero(0, 2);
-        ImageView imagenCuatro = crearImagenTablero(1, 0);
-        ImageView imagenCinco = crearImagenTablero(1, 1);
-        ImageView imagenSeis = crearImagenTablero(1, 2);
-        ImageView imagenSiete = crearImagenTablero(2, 0);
-        ImageView imagenOcho = crearImagenTablero(2, 1);
-        ImageView imagenNueve = crearImagenTablero(2, 2);
+
 
         GridPane tablero = new GridPane();
 
@@ -90,7 +102,7 @@ public class Tablero extends Application {
         primaryStage.show();
 
     }
-    
+
     public int aleatorioJugador() {
 
         int jugadorInicial = 1 + (int) (Math.random() * 2);
@@ -98,7 +110,7 @@ public class Tablero extends Application {
         return jugadorInicial;
     }
 
-    public ImageView crearImagenTablero(int fila, int columna) {
+    private ImageView crearImagenTablero(int fila, int columna) {
         Casilla imagen = new Casilla(fila, columna);
         imagen.setFitWidth(100);
         imagen.setFitHeight(100);
@@ -106,7 +118,6 @@ public class Tablero extends Application {
         imagen.setSmooth(true);
         imagen.setCache(true);
         imagen.setPickOnBounds(true);
-        
 
         imagen.setOnMouseClicked((MouseEvent event) -> {
             if (!juegoTerminado) {
@@ -143,6 +154,7 @@ public class Tablero extends Application {
                 }
                 if (cuentaJugadas >= 9) {
                     juegoTerminado = true;
+                    JOptionPane.showMessageDialog(null, "¡Hay un empate!");
                     Alert AlertaEmpate = new Alert(Alert.AlertType.NONE);
                     AlertaEmpate.setTitle("Gato - Ganador");
                     AlertaEmpate.setHeaderText(null);
@@ -155,6 +167,22 @@ public class Tablero extends Application {
         });
 
         return imagen;
+    }
+
+    public void reiniciarJuego() {
+
+        cT.reiniciarTablero(casillas);
+
+        imagenUno.setImage(null);
+        imagenDos.setImage(null);
+        imagenTres.setImage(null);
+        imagenCuatro.setImage(null);
+        imagenCinco.setImage(null);
+        imagenSeis.setImage(null);
+        imagenSiete.setImage(null);
+        imagenOcho.setImage(null);
+        imagenNueve.setImage(null);
+
     }
 
 }

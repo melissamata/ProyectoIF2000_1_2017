@@ -46,7 +46,8 @@ public class Menu extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                t.start(primaryStage);
+                t.reiniciarJuego();
+                
             }
         });
 
