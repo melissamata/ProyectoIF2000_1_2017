@@ -1,7 +1,6 @@
 package guigato;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,9 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.lang.Math;
-import javafx.scene.control.ButtonType;
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; 
 
 public class Tablero extends Application {
 
@@ -24,6 +21,8 @@ public class Tablero extends Application {
     public final int jugadorDos = 2;
     int turnoActual;
     boolean juegoTerminado = false;
+    public int gana1=0;
+    public int gana2=0;
 
     Image imgX = new Image("/ImagenesTablero/X.png");
     String X = "/ImagenesTablero/O.png";
@@ -136,7 +135,10 @@ public class Tablero extends Application {
                         AlertaGanadorUno.setContentText("¡El ganador es el jugador uno!");
                         AlertaGanadorUno.initStyle(StageStyle.UTILITY);
                         AlertaGanadorUno.showAndWait();
+                        gana1++;
+                        JOptionPane.showMessageDialog(null,"El jugador 1 tiene ganadas "+gana1+ " el jugador 2 tiene ganadas "+gana2);
                         anuncioJugar();
+                        
                     }
                 } else {
                     imagen.setImage(imgO);
@@ -150,6 +152,8 @@ public class Tablero extends Application {
                         AlertaGanadorDos.setContentText("¡El ganador es el jugador dos!");
                         AlertaGanadorDos.initStyle(StageStyle.UTILITY);
                         AlertaGanadorDos.showAndWait();
+                        gana2++;
+                        JOptionPane.showMessageDialog(null,"El jugador 1 tiene ganadas "+gana1+ " el jugador 2 tiene ganadas "+gana2);
                         anuncioJugar();
                     }
                 }
@@ -161,6 +165,7 @@ public class Tablero extends Application {
                     AlertaEmpate.setContentText("¡Hay un empate!");
                     AlertaEmpate.initStyle(StageStyle.UTILITY);
                     AlertaEmpate.showAndWait();
+                    JOptionPane.showMessageDialog(null,"El jugador 1 tiene ganadas "+gana1+ " el jugador 2 tiene ganadas "+gana2);
                     anuncioJugar();
 
                 }
@@ -198,5 +203,7 @@ public class Tablero extends Application {
             System.exit(0);
         } 
     }
+    
+   
 
 }
