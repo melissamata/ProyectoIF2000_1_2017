@@ -41,9 +41,9 @@ public class Tablero extends Application {
     ImageView imagenNueve;
 
     String[][] casillas = new String[3][3];
-    
-    public Tablero(){
-        
+
+    public Tablero() {
+
         imagenUno = crearImagenTablero(0, 0);
         imagenDos = crearImagenTablero(0, 1);
         imagenTres = crearImagenTablero(0, 2);
@@ -53,14 +53,13 @@ public class Tablero extends Application {
         imagenSiete = crearImagenTablero(2, 0);
         imagenOcho = crearImagenTablero(2, 1);
         imagenNueve = crearImagenTablero(2, 2);
-    
+
     }
 
     @Override
     public void start(Stage primaryStage) {
 
         turnoActual = aleatorioJugador();
-
 
         GridPane tablero = new GridPane();
 
@@ -130,39 +129,39 @@ public class Tablero extends Application {
                     turnoActual = jugadorDos;
                     casillas[filaSeleccionada][columnaSeleccionada] = "X";
                     if (cT.esGanador(casillas, "X")) {
+                        juegoTerminado = true;
                         Alert AlertaGanadorUno = new Alert(Alert.AlertType.INFORMATION);
                         AlertaGanadorUno.setTitle("Gato - Ganador");
                         AlertaGanadorUno.setHeaderText(null);
                         AlertaGanadorUno.setContentText("¡El ganador es el jugador uno!");
                         AlertaGanadorUno.initStyle(StageStyle.UTILITY);
                         AlertaGanadorUno.showAndWait();
-
+                        anuncioJugar();
                     }
                 } else {
                     imagen.setImage(imgO);
                     turnoActual = jugadorUno;
                     casillas[filaSeleccionada][columnaSeleccionada] = "O";
                     if (cT.esGanador(casillas, "O")) {
+                        juegoTerminado = true;
                         Alert AlertaGanadorDos = new Alert(Alert.AlertType.INFORMATION);
                         AlertaGanadorDos.setTitle("Gato - Ganador");
                         AlertaGanadorDos.setHeaderText(null);
                         AlertaGanadorDos.setContentText("¡El ganador es el jugador dos!");
                         AlertaGanadorDos.initStyle(StageStyle.UTILITY);
                         AlertaGanadorDos.showAndWait();
-                        
-
-                        juegoTerminado = true;
+                        anuncioJugar();
                     }
                 }
                 if (cuentaJugadas >= 9) {
                     juegoTerminado = true;
-                    JOptionPane.showMessageDialog(null, "¡Hay un empate!");
                     Alert AlertaEmpate = new Alert(Alert.AlertType.INFORMATION);
                     AlertaEmpate.setTitle("Gato - Ganador");
                     AlertaEmpate.setHeaderText(null);
                     AlertaEmpate.setContentText("¡Hay un empate!");
                     AlertaEmpate.initStyle(StageStyle.UTILITY);
                     AlertaEmpate.showAndWait();
+                    anuncioJugar();
 
                 }
             }
@@ -175,6 +174,9 @@ public class Tablero extends Application {
 
         cT.reiniciarTablero(casillas);
 
+        juegoTerminado = false;
+        cuentaJugadas = 0;
+
         imagenUno.setImage(null);
         imagenDos.setImage(null);
         imagenTres.setImage(null);
@@ -184,7 +186,17 @@ public class Tablero extends Application {
         imagenSiete.setImage(null);
         imagenOcho.setImage(null);
         imagenNueve.setImage(null);
+    }
 
+    public void anuncioJugar() {
+
+        int resp = JOptionPane.showConfirmDialog(null, "Desea seguir jugando", "Reiniciar Juego", JOptionPane.YES_NO_OPTION);
+        
+        if (resp == 0) {
+            reiniciarJuego();
+        } else {
+            System.exit(0);
+        } 
     }
 
 }
